@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <title>Pokémon 도감 +</title>
+
+    <script>
+        var html5rocks = {};
+        html5rocks.webdb = {};
+        html5rocks.webdb.db = null;
+
+        html5rocks.webdb.open = function() {
+            var dbSize = 5 * 1024 * 1024; // 5MB
+            html5rocks.webdb.db = openDatabase("pokemon", "1.0", "pokemon", dbSize);
+        }
+
+        html5rocks.webdb.createTable = function() {
+            var db = html5rocks.webdb.db;
+            db.transaction(function(tx) {
+                tx.executeSql("CREATE TABLE IF NOT EXISTS pokemon(ID INTEGER PRIMARY KEY ASC, ptype TEXT, pname TEXT)", []);
+            });
+        }
+
+        html5rocks.webdb.add = function(ptype, pname) {
+            var db = html5rocks.webdb.db;
+            db.transaction(function(tx) {
+                var addedOn = new Date();
+                tx.executeSql("INSERT INTO pokemon(ptype, pname) VALUES (?,?)",
+                    [ptype, pname],
+                    html5rocks.webdb.onSuccess,
+                    html5rocks.webdb.onError);
+            });
+
+        }
+
+        html5rocks.webdb.onError = function(tx, e) {
+            alert("에러 발생: " + e.message);
+        }
+
+        html5rocks.webdb.onSuccess = function(tx, r) {
+            html5rocks.webdb.getAllWebsiteItems(loadItems);
+        }
+
+        html5rocks.webdb.getAllWebsiteItems = function(renderFunc) {
+            var db = html5rocks.webdb.db;
+            db.transaction(function(tx) {
+                tx.executeSql("SELECT * FROM pokemon", [], renderFunc,
+                    html5rocks.webdb.onError);
+            });
+        }
+
+        html5rocks.webdb.delete = function(id) {
+            var db = html5rocks.webdb.db;
+            db.transaction(function(tx) {
+                tx.executeSql("DELETE FROM pokemon WHERE ID=?", [id],
+                    html5rocks.webdb.onSuccess,
+                    html5rocks.webdb.onError);
+            });
+        }
+
+        function loadItems(tx, rs) {
+            var rowOutput = "";
+            var todoItems = document.getElementById("MyPokemonItems");
+            for (var i = 0; i < rs.rows.length; i++) {
+                rowOutput += renderWebSite(rs.rows.item(i));
+            }
+            todoItems.innerHTML = rowOutput;
+        }
+
+        function renderWebSite(row) {
+            return "<li>" + row.ptype + "&nbsp;&nbsp;" + row.pname + "[<a href='javascript:void(0);'  onclick='deleteRow(" + row.ID + ");'>삭제</a>]";
+        }
+
+        function deleteRow(rowId) {
+            html5rocks.webdb.delete(rowId);
+        }
+
+        function init() {
+            html5rocks.webdb.open();
+            html5rocks.webdb.createTable();
+            html5rocks.webdb.getAllWebsiteItems(loadItems);
+        }
+
+        function add() {
+            var ptype = document.getElementById("ptype");
+            var pname = document.getElementById("pname");
+            html5rocks.webdb.add(ptype.value, pname.value);
+            ptype.value = "";
+            pname.value = "";
+        }
+
+        function deleteALL() {
+            html5rocks.webdb.deleteALL();
+            init();
+        }
+        html5rocks.webdb.deleteALL = function() {
+            var db = html5rocks.webdb.db;
+            db.transaction(function(tx) {
+                tx.executeSql("drop table pokemon", [],
+                    html5rocks.webdb.onSuccess,
+                    html5rocks.webdb.onError);
+            });
+        }
+
+    </script>
+</head>
+
+<body onload="init();">
+    <div id="container" style="background-color: #FFFFFF; background-image: url(img/back.png); background-size: cover">
+        <div data-role="header" style="background-color: #FE4341">
+            <h1 align="center" style="color:white; text-shadow: none">PLAY Pokémon GO</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="index.html" data-icon="home" style="background-color: black;"></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-role="content" style="text-align:center">
+            <h2 style="font-weight: bold; color: #0040FF; text-shadow: none">Pokémon 도감 +</h2>
+        </div>
+        <br>
+
+        <div style=" width: 40%; margin: auto">
+            <form type="post" onsubmit="add(); return false;">
+                <div style="text-shadow: none; font-weight: bold">포켓몬 타입:</div>
+                <select id="ptype" name="ptype">
+                    <option value="">=== 타입 선택 ===</option>
+                    <option value="전기 타입">전기 타입</option>
+                    <option value="물 타입">물 타입</option>
+                    <option value="불 타입">불 타입</option>
+                    <option value="페어리 타입">페어리 타입</option>
+                </select>
+                <div style="text-shadow: none; font-weight: bold">포켓몬 이름:</div>
+                <input type="text" id="pname" name="pname" placeholder="포켓몬 이름" />
+                <input type="submit" value="기록 추가" style="background-color: yellow" />
+            </form>
+
+            <ul id="MyPokemonItems"></ul>
+
+            <form type="post" onsubmit="deleteALL(); return false;">
+                <input type="submit" value="모든 기록 삭제" style="background-color: red" />
+            </form>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br>
+    </div>
+
+    <div data-role="footer" style="background-color: #FAF399">
+        <h2>&copy; Pokémon GO</h2>
+    </div>
+
+</body>
+
+</html>

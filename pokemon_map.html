@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <title>Pokémon GO 핫 플레이스</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <script>
+        
+        var map;
+
+        $(function() {
+            var latlngDC = new google.maps.LatLng(37.513835, 127.104434);
+            var mapOptions = {
+                zoom: 12,
+                center: latlngDC
+            };
+
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+            var marker = new google.maps.Marker({
+                position: latlngDC,
+                map: map,
+                title: '서울 롯데월드',
+                icon: 'img/marker.png',
+                animation: google.maps.Animation.DROP
+            });
+
+            var contentString = "<b>서울 롯데월드</b>";
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map, marker);
+            });
+        });
+
+    </script>
+    <style>
+        #map-canvas {
+            margin: auto;
+            width: 1000px;
+            height: 450px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div data-role="page">
+        <div data-role="header" style="background-color: #FE4341">
+            <h1 align="center" style="color:white; text-shadow: none">PLAY Pokémon GO</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="index.html" data-icon="home" style="background-color: black;"></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-role="main" class="ui-content" style="background-image: url(img/back.png); background-size: cover">
+            <h2 style="text-align:center;">
+                <p style="color: #0040FF; font-weight: bold; text-shadow: none">Pokémon GO 핫 플레이스</p>
+            </h2>
+            <div id='map-canvas'></div>
+            <br><br><br>
+        </div>
+
+        <div data-role="footer" style="background-color: #FAF399">
+            <h2>&copy; Pokémon GO</h2>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <title>Pokémon GO 갤러리</title>
+</head>
+
+<body>
+
+    <div data-role="page" style="background-color: #FFFFFF; background-image: url(img/back.png); background-size: cover">
+        <div data-role="header" style="background-color: #FE4341">
+            <h1 align="center" style="color:white; text-shadow: none">PLAY Pokémon GO</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="index.html" data-icon="home" style="background-color: black;"></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-role="main" class="ui-content">
+            <div style="text-align:center">
+                <h2 style="color: #0040FF; text-shadow: none">Pokémon GO 갤러리</h2>
+                <h3 style="color: black; text-shadow: none">클릭 시 확대</h3>
+            </div>
+            <div class="ui-grid-b">
+                <div class="ui-block-a">
+                    <a href="#myPopup1" data-rel="popup" data-position-to="window">
+                        <center>
+                            <img src="img/p1.jpg" alt="지도 사진" style="width:50%; height:50%; border: 3px solid black">
+                        </center>
+                    </a>
+                    <h3 style="text-align:center">[ 지도 페이지 ]</h3>
+                </div>
+                <div class="ui-block-b">
+                    <a href="#myPopup2" data-rel="popup" data-position-to="window">
+                        <center>
+                            <img src="img/p2.jpg" alt="포켓몬 사진" style="width:50%; height:50%; border: 3px solid black">
+                        </center>
+                    </a>
+                    <h3 style="text-align:center">[ 포켓몬 페이지 ]</h3>
+                </div>
+                <div class="ui-block-c">
+                    <a href="#myPopup3" data-rel="popup" data-position-to="window">
+                        <center>
+                            <img src="img/p3.jpg" alt="포획 보상 사진" style="width:50%; height:50%; border: 3px solid black">
+                        </center>
+                    </a>
+                    <h3 style="text-align:center">[ 포획 보상 페이지 ]</h3>
+                </div>
+                <br>
+                <div class="ui-block-a">
+                    <a href="#myPopup4" data-rel="popup" data-position-to="window">
+                        <center>
+                            <img src="img/p4.jpg" alt="주간 피트니스 사진" style="width:50%; height:50%; border: 3px solid black">
+                        </center>
+                    </a>
+                    <h3 style="text-align:center">[ 주간 피트니스 페이지 ]</h3>
+                </div>
+                <div class="ui-block-b">
+                    <a href="#myPopup5" data-rel="popup" data-position-to="window">
+                        <center>
+                            <img src="img/p5.jpg" alt="도구 사진" style="width:50%; height:50%; border: 3px solid black">
+                        </center>
+                    </a>
+                    <h3 style="text-align:center">[ 도구 페이지 ]</h3>
+                </div>
+                <div class="ui-block-c">
+                    <a href="#myPopup6" data-rel="popup" data-position-to="window">
+                        <center>
+                            <img src="img/p6.jpg" alt="상점 사진" style="width:50%; height:50%; border: 3px solid black">
+                        </center>
+                    </a>
+                    <h3 style="text-align:center">[ 상점 페이지 ]</h3>
+                </div>
+                <div class="ui-block-a">
+                    <a href="#myPopup7" data-rel="popup" data-position-to="window">
+                        <center>
+                            <img src="img/p7.jpg" alt="도감 사진" style="width:50%; height:50%; border: 3px solid black">
+                        </center>
+                    </a>
+                    <h3 style="text-align:center">[ 도감 페이지 ]</h3>
+                </div>
+                <div class="ui-block-b">
+                    <a href="#myPopup8" data-rel="popup" data-position-to="window">
+                        <center>
+                            <img src="img/p8.jpg" alt="메달 사진" style="width:50%; height:50%; border: 3px solid black">
+                        </center>
+                    </a>
+                    <h3 style="text-align:center">[ 메달 페이지 ]</h3>
+                </div>
+                <div class="ui-block-c">
+                    <a href="#myPopup9" data-rel="popup" data-position-to="window">
+                        <center>
+                            <img src="img/p9.jpg" alt="알 사진" style="width:50%; height:50%; border: 3px solid black">
+                        </center>
+                    </a>
+                    <h3 style="text-align:center">[ 알 페이지 ]</h3>
+                </div>
+            </div>
+        </div>
+
+        <div data-role="popup" id="myPopup1" data-overlay-theme="b">
+            <h3 align="center" style="font-weight: bold">[ 지도 페이지 ]</h3>
+            <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">닫기</a>
+            <center>
+                <img src="img/p1.jpg" style="width:40%;height:40%;" alt="지도 사진">
+            </center>
+        </div>
+        <div data-role="popup" id="myPopup2" data-overlay-theme="b">
+            <h3 align="center" style="font-weight: bold">[ 포켓몬 페이지 ]</h3>
+            <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">닫기</a>
+            <center>
+                <img src="img/p2.jpg" style="width:40%;height:40%;" alt="포켓몬 사진">
+            </center>
+        </div>
+        <div data-role="popup" id="myPopup3" data-overlay-theme="b">
+            <h3 align="center" style="font-weight: bold">[ 포획 보상 페이지 ]</h3>
+            <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">닫기</a>
+            <center>
+                <img src="img/p3.jpg" style="width:40%;height:40%;" alt="포획 보상 사진">
+            </center>
+        </div>
+        <div data-role="popup" id="myPopup4" data-overlay-theme="b">
+            <h3 align="center" style="font-weight: bold">[ 주간 피트니스 페이지 ]</h3>
+            <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">닫기</a>
+            <center>
+                <img src="img/p4.jpg" style="width:40%;height:40%;" alt="주간 피트니스 사진">
+            </center>
+        </div>
+        <div data-role="popup" id="myPopup5" data-overlay-theme="b">
+            <h3 align="center" style="font-weight: bold">[ 도구 페이지 ]</h3>
+            <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">닫기</a>
+            <center>
+                <img src="img/p5.jpg" style="width:40%;height:40%;" alt="도구 사진">
+            </center>
+        </div>
+        <div data-role="popup" id="myPopup6" data-overlay-theme="b">
+            <h3 align="center" style="font-weight: bold">[ 상점 페이지 ]</h3>
+            <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">닫기</a>
+            <center>
+                <img src="img/p6.jpg" style="width:40%;height:40%;" alt="상점 사진">
+            </center>
+        </div>
+        <div data-role="popup" id="myPopup7" data-overlay-theme="b">
+            <h3 align="center" style="font-weight: bold">[ 도감 페이지 ]</h3>
+            <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">닫기</a>
+            <center>
+                <img src="img/p7.jpg" style="width:40%;height:40%;" alt="도감 사진">
+            </center>
+        </div>
+        <div data-role="popup" id="myPopup8" data-overlay-theme="b">
+            <h3 align="center" style="font-weight: bold">[ 메달 페이지 ]</h3>
+            <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">닫기</a>
+            <center>
+                <img src="img/p8.jpg" style="width:40%;height:40%;" alt="메달 사진">
+            </center>
+        </div>
+        <div data-role="popup" id="myPopup9" data-overlay-theme="b">
+            <h3 align="center" style="font-weight: bold">[ 알 페이지 ]</h3>
+            <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">닫기</a>
+            <center>
+                <img src="img/p9.jpg" style="width:40%;height:40%;" alt="알 사진">
+            </center>
+        </div>
+
+
+        <div data-role="footer" style="background-color: #FAF399;">
+            <h2>&copy; Pokémon GO</h2>
+        </div>
+    </div>
+
+</body>
+
+</html>
